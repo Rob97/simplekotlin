@@ -3,14 +3,90 @@
 println("UW Homework: Simple Kotlin")
 
 // write a "whenFn" that takes an arg of type "Any" and returns a String
+    fun whenFn(a:Any):String {
+        when(a){
+            "Hello" -> return "world"
+            is String -> return "Say what?"
+            0 -> return "zero"
+            1-> return "one"
+            5 -> return "low number"
+            9 -> return "low number"
+            is Int -> return "a number"
 
+            else -> return "I don't understand"
+        }
+    }
 // write an "add" function that takes two Ints, returns an Int, and adds the values
+
+fun add(a:Int, b:Int): Int {
+    return a+b;
+}
+
+
 // write a "sub" function that takes two Ints, returns an Int, and subtracts the values
-// write a "mathOp" function that takes two Ints and a function (that takes two Ints and returns an Int), returns an Int, and applies the passed-in-function to the arguments
+fun sub(a:Int, b:Int): Int {
+    return a-b;
+}
+// write a "mathOp" function that takes two Ints and a 
+// function (that takes two Ints and returns an Int), returns an Int, 
+// and applies the passed-in-function to the arguments
+
+// fun mathOp(a:Int, b:Int,operation:{x,y}:Int):Int{
+
+
+// }
+
+fun mathOp(first: Int, second: Int, inFn: (x: Int, y : Int) -> Int) : Int {
+        return inFn(first, second)
+    }
 
 // write a class "Person" with first name, last name and age
 
+class Person(var firstName: String, var lastName: String, var age: Int) {
+        var FName: String
+        var SName: String
+        var howOld: Int
+        
+        init{
+            FName = firstName
+            SName = lastName
+            howOld = age
+        }
+
+        val debugString: String
+            get(){
+                return "[Person firstName:$firstName lastName:$lastName age:$age]"
+            }
+    }
+
 // write a class "Money"
+
+class Money(var amount: Int, var currency: String){
+       
+        fun convert(c: String): Money{
+            var newAmount: Int = amount
+            when(this.currency){
+                "USD" -> newAmount = newAmount
+                "GBP" -> newAmount = newAmount * 2
+                "EUR" -> newAmount = newAmount * 3 / 2
+                "CAN" -> newAmount = newAmount * 5 / 4
+                
+                
+            }
+            when(c){
+                "USD" -> newAmount = newAmount
+                "GBP" -> newAmount = newAmount / 2
+                "EUR" -> newAmount = newAmount * 3 / 2
+                "CAN" -> newAmount = newAmount * 5 / 4                
+            }
+            return Money(newAmount, c)
+        }
+
+        operator fun plus(m: Money): Money {
+            return Money(this.amount + m.convert(this.currency).amount, this.currency)
+        }
+    }
+
 
 // ============ DO NOT EDIT BELOW THIS LINE =============
 
